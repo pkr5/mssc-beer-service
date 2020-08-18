@@ -13,7 +13,7 @@ import java.util.List;
 public class MvcExceptionHandler {
 
     @ExceptionHandler(ConstraintViolationException.class)
-    public ResponseEntity<List> errorValidationHandler(ConstraintViolationException e){
+    public ResponseEntity<List<String>> errorValidationHandler(ConstraintViolationException e){
         List<String> errors = new ArrayList<>(e.getConstraintViolations().size());
         e.getConstraintViolations().forEach(s->errors.add(s.toString()));
         return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
